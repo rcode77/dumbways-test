@@ -5,7 +5,7 @@ import searchIcon from "../assets/icons/search.png";
 import enIcon from "../assets/icons/en-icon.png";
 
 export default function Navbar() {
-  const [show, setShow] = useState(false);
+  const [hide, setHide] = useState(false);
   let curScroll;
   let prevScroll = window.scrollY || document.documentElement.scrollTop;
   let toggled;
@@ -36,9 +36,9 @@ export default function Navbar() {
     toggled = true;
     let threshold = 200;
     if (curDirection === 2 && curScroll > threshold) {
-      setShow(true);
+      setHide(true);
     } else if (curDirection === 1) {
-      setShow(false);
+      setHide(false);
     } else {
       toggled = false;
     }
@@ -53,7 +53,7 @@ export default function Navbar() {
     <nav
       id="navbar"
       className={`fixed top-0 left-0 z-20 flex w-full items-center bg-white/70 transition ${
-        show && "transition -translate-y-full"
+        hide && "transition -translate-y-full"
       }`}
     >
       <div className="container mx-auto ">
