@@ -10,15 +10,27 @@ import about1 from "../assets/images/about1.png";
 import about2 from "../assets/images/about2.png";
 import about3 from "../assets/images/about3.png";
 
-const DATA_QUERY = `{
-    brands{
+import axios from "axios";
+
+const DATA_QUERY = `query{
+  brands(where:{name:"Coolpad"}){
+    id
+    products{
       id
       name
-      products{
-        id
-        name
-      }  
     }
+  }
+}`;
+
+const TEST_QUERY = `{
+  query {
+    posts {
+      name
+      comments{
+        name
+      }
+    }
+  }
 }`;
 
 export default function Content() {
@@ -40,8 +52,22 @@ export default function Content() {
 
   console.log(data);
 
+  const getTestData = async () => {
+    try {
+      const result = await axios.post(
+        "https://dev-scphonecmlcj.microgen.id/graphql",
+        { query: DATA_QUERY }
+      );
+
+      console.log(result.data.data.brands[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    getData();
+    // getData();
+    getTestData();
   }, []);
 
   return (

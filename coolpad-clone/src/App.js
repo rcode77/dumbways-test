@@ -1,20 +1,22 @@
+import { Routes, Route } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import Content from "./components/Content";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import Slide from "./components/Slide";
+
+import LandingPage from "./pages/LandingPage";
+import AddProduct from "./pages/Test/AddProduct";
+import EditProduct from "./pages/Test/EditProduct";
+import ShowProduct from "./pages/Test/ShowProducts";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Slide />
-      <Content />
-      <Footer />
-    </div>
+    <Routes>
+      <Route exact path="/" element={<LandingPage />} />
+      <Route exact path="/product" element={<ShowProduct />} />
+      <Route exact path="/add" element={<AddProduct />} />
+      <Route exact path="/product/edit/:id" element={<EditProduct />} />
+    </Routes>
   );
 }
 
